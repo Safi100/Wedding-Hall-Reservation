@@ -155,12 +155,14 @@ public class register extends javax.swing.JFrame {
             String Email = email.getText().trim();
             String Password = password.getText().trim();
             try {
-                BufferedWriter writer = new BufferedWriter(new FileWriter("users.txt"));
+                BufferedWriter writer = new BufferedWriter(new FileWriter("users.txt",true));
                 writer.write(Username + "/" + Email + "/" + Password + "\n");
                 writer.close();
             } catch (IOException ex) {
                 Logger.getLogger(register.class.getName()).log(Level.SEVERE, null, ex);
             }
+            // successfull message
+            JOptionPane.showMessageDialog(null, "Register done\nyou will redirect to login page");
             // redirect to login page after successfully registerd
             Login obj = new Login();
             obj.setVisible(true);
