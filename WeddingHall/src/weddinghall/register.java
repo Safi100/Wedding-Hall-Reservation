@@ -22,6 +22,31 @@ public class register extends javax.swing.JFrame {
     public register() {
         initComponents();
     }
+    
+    void Register(){
+        if(username.getText().trim().isEmpty() || email.getText().trim().isEmpty() || password.getText().trim().isEmpty()){
+            // Display message if some input is null
+            JOptionPane.showMessageDialog(null, "can't register with null values");
+        }else{
+            // if all inputs not null -> write new user to users file
+            String Username = username.getText().trim();
+            String Email = email.getText().trim();
+            String Password = password.getText().trim();
+            try {
+                BufferedWriter writer = new BufferedWriter(new FileWriter("users.txt",true));
+                writer.write(Username + "/"  + Email + "/" + Password + "\n");
+                writer.close();
+            } catch (IOException ex) {
+                Logger.getLogger(register.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            // successfull message
+            JOptionPane.showMessageDialog(null, "Register done\nyou will redirect to login page");
+            // redirect to login page after successfully registerd
+            Login obj = new Login();
+            obj.setVisible(true);
+            this.setVisible(false);
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -146,28 +171,7 @@ public class register extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void SignUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignUpBtnActionPerformed
-        if(username.getText().trim().isEmpty() || email.getText().trim().isEmpty() || password.getText().trim().isEmpty()){
-            // Display message if some input is null
-            JOptionPane.showMessageDialog(null, "can't register with null values");
-        }else{
-            // if all inputs not null -> write new user to users file
-            String Username = username.getText().trim();
-            String Email = email.getText().trim();
-            String Password = password.getText().trim();
-            try {
-                BufferedWriter writer = new BufferedWriter(new FileWriter("users.txt",true));
-                writer.write(Username + "/" + Email + "/" + Password + "\n");
-                writer.close();
-            } catch (IOException ex) {
-                Logger.getLogger(register.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            // successfull message
-            JOptionPane.showMessageDialog(null, "Register done\nyou will redirect to login page");
-            // redirect to login page after successfully registerd
-            Login obj = new Login();
-            obj.setVisible(true);
-            this.setVisible(false);
-        }
+        Register();
     }//GEN-LAST:event_SignUpBtnActionPerformed
 
     private void GoToLoginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GoToLoginBtnActionPerformed
