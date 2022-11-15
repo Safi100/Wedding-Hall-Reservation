@@ -4,6 +4,14 @@
  */
 package weddinghall;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author safin
@@ -16,7 +24,41 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
     }
-
+    
+    void login(){
+        if(usernameOrEmail.getText().trim().isEmpty() || password.getText().trim().isEmpty()){
+            // Display message if some input is null
+            JOptionPane.showMessageDialog(null, "can't Login with null values");
+        }else{
+            String usernameOrEmailInput = usernameOrEmail.getText().trim();
+            String PasswordInput = password.getText().trim();
+            try{
+                BufferedReader reader = new BufferedReader(new FileReader("users.txt"));
+                Object[] tableLines = reader.lines().toArray();
+                for(int i=0;i< tableLines.length; i++){
+                    String user = tableLines[i].toString().trim();
+                    String[] users = user.split("/");
+                    String Username = users[0].trim();
+                    String Email = users[1].trim();
+                    String Password = users[2].trim();
+                    if((usernameOrEmailInput.equals(Username) || usernameOrEmailInput.equals(Email)) && PasswordInput.equals(Password)){
+                        JOptionPane.showMessageDialog(null, "Login successfully");
+                        home obj = new home();
+                        obj.setVisible(true);
+                        this.setVisible(false);
+                        reader.close();
+                        break;
+                    }else{
+                        if(i == tableLines.length - 1){
+                            JOptionPane.showMessageDialog(null, "Wrong username/password");
+                        }
+                    }
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(register.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,7 +71,7 @@ public class Login extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        username = new javax.swing.JTextField();
+        usernameOrEmail = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         LoginBtn = new javax.swing.JButton();
         password = new javax.swing.JPasswordField();
@@ -53,11 +95,11 @@ public class Login extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setText("Username");
+        jLabel1.setText("Username or Email");
 
-        username.addActionListener(new java.awt.event.ActionListener() {
+        usernameOrEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameActionPerformed(evt);
+                usernameOrEmailActionPerformed(evt);
             }
         });
 
@@ -94,7 +136,7 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(GoToRegisterBtn)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(LoginBtn)
-                        .addComponent(username, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+                        .addComponent(usernameOrEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(password)))
@@ -108,7 +150,7 @@ public class Login extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addGap(5, 5, 5)
-                .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(usernameOrEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addGap(5, 5, 5)
@@ -139,12 +181,12 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void LoginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginBtnActionPerformed
-        // TODO add your handling code here:
+        login();
     }//GEN-LAST:event_LoginBtnActionPerformed
 
-    private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
+    private void usernameOrEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameOrEmailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_usernameActionPerformed
+    }//GEN-LAST:event_usernameOrEmailActionPerformed
 
     private void GoToRegisterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GoToRegisterBtnActionPerformed
         // redirect to register page
@@ -197,6 +239,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField password;
-    private javax.swing.JTextField username;
+    private javax.swing.JTextField usernameOrEmail;
     // End of variables declaration//GEN-END:variables
 }
