@@ -49,7 +49,7 @@ public class Login extends javax.swing.JFrame {
         initComponents();
     }
     
-    void login(){
+    public void login(){
         if(usernameOrEmailText.getText().trim().isEmpty() || passwordText.getText().trim().isEmpty()){
             // Display message if some input is null
             JOptionPane.showMessageDialog(null, "can't Login with null values");
@@ -75,6 +75,7 @@ public class Login extends javax.swing.JFrame {
                             this.setVisible(false);
                         }else{
                             home obj = new home();
+                            obj.welcomeLabel.setText("Welcome back " + this.getUsername());
                             obj.setVisible(true);
                             this.setVisible(false);
                         }
