@@ -11,30 +11,53 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author safin
- */
 public class register extends javax.swing.JFrame {
-    /**
-     * Creates new form register
-     */
+    private String username;
+    private String email;
+    private String password;
+    private String role;
+    
+    public String getRole(){
+        return this.role;
+    }
+    public String getEmail(){
+        return this.email;
+    }
+    public void setEmail(String email){
+        this.email = email;
+    }
+    public void setRole(String role){
+        this.role = role;
+    }
+    public String getUsername() {
+        return this.username;
+    }
+    public void setUsername(String username) {
+        this.username = username;
+    }
+    public String getPassword() {
+        return this.password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
     public register() {
         initComponents();
     }
     
-    void Register(){
-        if(username.getText().trim().isEmpty() || email.getText().trim().isEmpty() || password.getText().trim().isEmpty()){
+    public void Register(){
+        if(usernameText.getText().trim().isEmpty() || emailText.getText().trim().isEmpty() || passwordText.getText().trim().isEmpty()){
             // Display message if some input is null
             JOptionPane.showMessageDialog(null, "can't register with null values");
         }else{
             // if all inputs not null -> write new user to users file
-            String Username = username.getText().trim();
-            String Email = email.getText().trim();
-            String Password = password.getText().trim();
+            this.setUsername(usernameText.getText().trim());
+            this.setEmail(emailText.getText().trim());
+            this.setPassword(passwordText.getText().trim());
+            this.setRole("user");
             try {
                 BufferedWriter writer = new BufferedWriter(new FileWriter("users.txt",true));
-                writer.write(Username + "/"  + Email + "/" + Password + "\n");
+                writer.write(this.getUsername() + "/"  + this.getEmail() + "/" + this.getPassword() + "/" + this.getRole() + "\n");
                 writer.close();
             } catch (IOException ex) {
                 Logger.getLogger(register.class.getName()).log(Level.SEVERE, null, ex);
@@ -60,13 +83,13 @@ public class register extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        username = new javax.swing.JTextField();
+        usernameText = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         SignUpBtn = new javax.swing.JButton();
-        password = new javax.swing.JPasswordField();
+        passwordText = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
         GoToLoginBtn = new javax.swing.JButton();
-        email = new javax.swing.JTextField();
+        emailText = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -119,12 +142,12 @@ public class register extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(GoToLoginBtn)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(email, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(emailText, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(SignUpBtn, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(username, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+                        .addComponent(usernameText, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(password, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(passwordText, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
@@ -136,15 +159,15 @@ public class register extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addGap(5, 5, 5)
-                .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(usernameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(emailText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(passwordText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24)
                 .addComponent(SignUpBtn)
                 .addGap(18, 18, 18)
@@ -219,14 +242,14 @@ public class register extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton GoToLoginBtn;
     private javax.swing.JButton SignUpBtn;
-    private javax.swing.JTextField email;
+    private javax.swing.JTextField emailText;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPasswordField password;
-    private javax.swing.JTextField username;
+    private javax.swing.JPasswordField passwordText;
+    private javax.swing.JTextField usernameText;
     // End of variables declaration//GEN-END:variables
 }

@@ -16,25 +16,51 @@ import javax.swing.JOptionPane;
  * @author safin
  */
 public class adminPanel extends javax.swing.JFrame {
-
-    /**
-     * Creates new form adminPanel
-     */
+    private String username;
+    private String email;
+    private String password;
+    private String role;
+    
+    public String getRole(){
+        return this.role;
+    }
+    public String getEmail(){
+        return this.email;
+    }
+    public void setEmail(String email){
+        this.email = email;
+    }
+    public void setRole(String role){
+        this.role = role;
+    }
+    public String getUsername() {
+        return this.username;
+    }
+    public void setUsername(String username) {
+        this.username = username;
+    }
+    public String getPassword() {
+        return this.password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
     public adminPanel() {
         initComponents();
     }
     void AddNewAdmin(){
-        if(username.getText().trim().isEmpty() || email.getText().trim().isEmpty() || password.getText().trim().isEmpty()){
+        if(usernameText.getText().trim().isEmpty() || emailText.getText().trim().isEmpty() || passwordText.getText().trim().isEmpty()){
             // Display message if some input is null
-            JOptionPane.showMessageDialog(null, "ادخل جميع البيانات");
+            JOptionPane.showMessageDialog(null, "الرجاء ادخال جميع الحقول المطلوبة");
         }else{
-            // if all inputs not null -> write new admin to admins file
-            String Username = username.getText().trim();
-            String Email = email.getText().trim();
-            String Password = password.getText().trim();
+            // if all inputs not null -> write new user to users file
+            this.setUsername(usernameText.getText().trim());
+            this.setEmail(emailText.getText().trim());
+            this.setPassword(passwordText.getText().trim());
+            this.setRole("admin");
             try {
-                BufferedWriter writer = new BufferedWriter(new FileWriter("admins.txt",true));
-                writer.write(Username + "/"  + Email + "/" + Password + "\n");
+                BufferedWriter writer = new BufferedWriter(new FileWriter("users.txt",true));
+                writer.write(this.getUsername() + "/"  + this.getEmail() + "/" + this.getPassword() + "/" + this.getRole() + "\n");
                 writer.close();
             } catch (IOException ex) {
                 Logger.getLogger(register.class.getName()).log(Level.SEVERE, null, ex);
@@ -56,15 +82,16 @@ public class adminPanel extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        username = new javax.swing.JTextField();
-        email = new javax.swing.JTextField();
-        password = new javax.swing.JTextField();
+        usernameText = new javax.swing.JTextField();
+        emailText = new javax.swing.JTextField();
+        passwordText = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("صفحة المسؤول");
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "إضافة مسؤول جديد", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.DEFAULT_POSITION));
@@ -92,9 +119,9 @@ public class adminPanel extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(username, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(email, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(password, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE))
+                        .addComponent(usernameText, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(emailText, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(passwordText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE))
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
@@ -105,15 +132,15 @@ public class adminPanel extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addGap(3, 3, 3)
-                .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(usernameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(emailText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(passwordText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
@@ -131,7 +158,7 @@ public class adminPanel extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(50, Short.MAX_VALUE)
+                .addContainerGap(34, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -144,9 +171,9 @@ public class adminPanel extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 219, Short.MAX_VALUE)
+                        .addGap(0, 191, Short.MAX_VALUE)
                         .addComponent(jLabel1)
-                        .addGap(0, 220, Short.MAX_VALUE))
+                        .addGap(0, 192, Short.MAX_VALUE))
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -203,7 +230,7 @@ public class adminPanel extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField email;
+    private javax.swing.JTextField emailText;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -211,7 +238,7 @@ public class adminPanel extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField password;
-    private javax.swing.JTextField username;
+    private javax.swing.JTextField passwordText;
+    private javax.swing.JTextField usernameText;
     // End of variables declaration//GEN-END:variables
 }

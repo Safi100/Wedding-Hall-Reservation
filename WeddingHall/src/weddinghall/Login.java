@@ -7,7 +7,6 @@ package weddinghall;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -17,21 +16,47 @@ import javax.swing.JOptionPane;
  * @author safin
  */
 public class Login extends javax.swing.JFrame {
-
-    /**
-     * Creates new form Login
-     */
+    private String username;
+    private String email;
+    private String password;
+    private String role;
+    
+    public String getRole(){
+        return this.role;
+    }
+    public String getEmail(){
+        return this.email;
+    }
+    public void setEmail(String email){
+        this.email = email;
+    }
+    public void setRole(String role){
+        this.role = role;
+    }
+    public String getUsername() {
+        return this.username;
+    }
+    public void setUsername(String username) {
+        this.username = username;
+    }
+    public String getPassword() {
+        return this.password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
     public Login() {
         initComponents();
     }
     
     void login(){
-        if(usernameOrEmail.getText().trim().isEmpty() || password.getText().trim().isEmpty()){
+        if(usernameOrEmailText.getText().trim().isEmpty() || passwordText.getText().trim().isEmpty()){
             // Display message if some input is null
             JOptionPane.showMessageDialog(null, "can't Login with null values");
         }else{
-            String usernameOrEmailInput = usernameOrEmail.getText().trim();
-            String PasswordInput = password.getText().trim();
+            this.setEmail(usernameOrEmailText.getText().trim());
+            this.setUsername(usernameOrEmailText.getText().trim());
+            this.setPassword(passwordText.getText().trim());
             try{
                 BufferedReader reader = new BufferedReader(new FileReader("users.txt"));
                 Object[] tableLines = reader.lines().toArray();
@@ -41,11 +66,18 @@ public class Login extends javax.swing.JFrame {
                     String Username = users[0].trim();
                     String Email = users[1].trim();
                     String Password = users[2].trim();
-                    if((usernameOrEmailInput.equals(Username) || usernameOrEmailInput.equals(Email)) && PasswordInput.equals(Password)){
+                    String role = users[3].trim();
+                    if((this.getUsername().equals(Username) || this.getEmail().equals(Email)) && this.getPassword().equals(Password)){
                         JOptionPane.showMessageDialog(null, "Login successfully");
-                        home obj = new home();
-                        obj.setVisible(true);
-                        this.setVisible(false);
+                        if("admin".equals(role)){
+                            adminPanel obj = new adminPanel();
+                            obj.setVisible(true);
+                            this.setVisible(false);
+                        }else{
+                            home obj = new home();
+                            obj.setVisible(true);
+                            this.setVisible(false);
+                        }
                         reader.close();
                         break;
                     }else{
@@ -71,13 +103,12 @@ public class Login extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        usernameOrEmail = new javax.swing.JTextField();
+        usernameOrEmailText = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         LoginBtn = new javax.swing.JButton();
-        password = new javax.swing.JPasswordField();
+        passwordText = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
         GoToRegisterBtn = new javax.swing.JButton();
-        AdminLoginBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -98,9 +129,9 @@ public class Login extends javax.swing.JFrame {
 
         jLabel1.setText("Username or Email");
 
-        usernameOrEmail.addActionListener(new java.awt.event.ActionListener() {
+        usernameOrEmailText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameOrEmailActionPerformed(evt);
+                usernameOrEmailTextActionPerformed(evt);
             }
         });
 
@@ -123,33 +154,23 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        AdminLoginBtn.setText("Go to admin login");
-        AdminLoginBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AdminLoginBtnActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(38, Short.MAX_VALUE)
+                .addContainerGap(63, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(GoToRegisterBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(password)
-                    .addComponent(usernameOrEmail)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(LoginBtn, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(AdminLoginBtn)))
-                .addContainerGap(38, Short.MAX_VALUE))
+                    .addComponent(passwordText)
+                    .addComponent(usernameOrEmailText)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel3)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(LoginBtn, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,15 +180,13 @@ public class Login extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addGap(5, 5, 5)
-                .addComponent(usernameOrEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(usernameOrEmailText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addGap(5, 5, 5)
-                .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(passwordText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LoginBtn)
-                    .addComponent(AdminLoginBtn))
+                .addComponent(LoginBtn)
                 .addGap(18, 18, 18)
                 .addComponent(GoToRegisterBtn)
                 .addContainerGap(22, Short.MAX_VALUE))
@@ -180,7 +199,7 @@ public class Login extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,9 +214,9 @@ public class Login extends javax.swing.JFrame {
         login();
     }//GEN-LAST:event_LoginBtnActionPerformed
 
-    private void usernameOrEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameOrEmailActionPerformed
+    private void usernameOrEmailTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameOrEmailTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_usernameOrEmailActionPerformed
+    }//GEN-LAST:event_usernameOrEmailTextActionPerformed
 
     private void GoToRegisterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GoToRegisterBtnActionPerformed
         // redirect to register page
@@ -205,12 +224,6 @@ public class Login extends javax.swing.JFrame {
         obj.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_GoToRegisterBtnActionPerformed
-
-    private void AdminLoginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminLoginBtnActionPerformed
-        AdminLogin obj = new AdminLogin();
-        obj.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_AdminLoginBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -248,7 +261,6 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AdminLoginBtn;
     private javax.swing.JButton GoToRegisterBtn;
     private javax.swing.JButton LoginBtn;
     private javax.swing.JLabel jLabel1;
@@ -256,7 +268,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPasswordField password;
-    private javax.swing.JTextField usernameOrEmail;
+    private javax.swing.JPasswordField passwordText;
+    private javax.swing.JTextField usernameOrEmailText;
     // End of variables declaration//GEN-END:variables
 }
