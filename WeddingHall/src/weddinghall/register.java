@@ -7,6 +7,7 @@ package weddinghall;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Base64;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -44,7 +45,13 @@ public class register extends javax.swing.JFrame {
     public register() {
         initComponents();
     }
-    
+    // reuse from https://simplifyingtechcode.wordpress.com/2021/10/16/java-password-password-encrypt-decrypt-basic-advanced/
+    public String EncryptionPassword(String password){
+        Base64.Encoder encoder = Base64.getEncoder();
+        String originalString = password;
+        String encodedString = encoder.encodeToString(originalString.getBytes());
+        return encodedString;
+    }
     public void Register(){
         if(usernameText.getText().trim().isEmpty() || emailText.getText().trim().isEmpty() || passwordText.getText().trim().isEmpty()){
             // Display message if some input is null
@@ -55,6 +62,8 @@ public class register extends javax.swing.JFrame {
             this.setEmail(emailText.getText().trim());
             this.setPassword(passwordText.getText().trim());
             this.setRole("user");
+            String EncryptionPassword = this.EncryptionPassword(this.getPassword());
+            this.setPassword(EncryptionPassword);
             try {
                 BufferedWriter writer = new BufferedWriter(new FileWriter("users.txt",true));
                 writer.write(this.getUsername() + "/"  + this.getEmail() + "/" + this.getPassword() + "/" + this.getRole() + "\n");

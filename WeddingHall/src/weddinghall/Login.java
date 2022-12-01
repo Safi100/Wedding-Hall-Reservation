@@ -7,6 +7,7 @@ package weddinghall;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Base64;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -41,7 +42,11 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
     }
-    
+    public String DycryptionPassword(String Encryptionpassword){
+        Base64.Decoder decoder = Base64.getDecoder();
+        byte[] bytes = decoder.decode(Encryptionpassword);
+        return new String(bytes);
+    }
     public void login(){
         if(usernameText.getText().trim().isEmpty() || passwordText.getText().trim().isEmpty()){
             // Display message if some input is null
@@ -58,8 +63,9 @@ public class Login extends javax.swing.JFrame {
                     String Username = users[0].trim();
                     String Password = users[2].trim();
                     String Role = users[3].trim();
-                    
-                    if(this.getUsername().equals(Username) && this.getPassword().equals(Password)){
+                    //Dycryption Password
+                    String DycryptionPassword = this.DycryptionPassword(Password);
+                    if(this.getUsername().equals(Username) && this.getPassword().equals(DycryptionPassword)){
                         JOptionPane.showMessageDialog(null, "Login successfully");
                         if("admin".equals(Role)){
                             adminPanel obj = new adminPanel();

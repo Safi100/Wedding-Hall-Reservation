@@ -76,7 +76,6 @@ public class home extends javax.swing.JFrame {
                 String[] dataRow = line.split("/");
                 String[] date = new String[1];
                 date[0] = dataRow[1]; // date[0] is a date are reserved by users
-                System.out.println(date[0]);
                 if(this.ReservedValidDate(PresentDateFormatted, date[0])){
                     model.addRow(date);
                 }
@@ -444,7 +443,7 @@ public class home extends javax.swing.JFrame {
     }//GEN-LAST:event_reservevationBtnActionPerformed
 
     private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
-        home obj = new home();
+        Login obj = new Login();
         obj.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_logoutBtnActionPerformed

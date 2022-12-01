@@ -7,6 +7,7 @@ package weddinghall;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Base64;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -97,6 +98,13 @@ public class adminPanel extends javax.swing.JFrame {
     public adminPanel() {
         initComponents();
     }
+    // reuse from https://simplifyingtechcode.wordpress.com/2021/10/16/java-password-password-encrypt-decrypt-basic-advanced/
+    public String EncryptionPassword(String password){
+        Base64.Encoder encoder = Base64.getEncoder();
+        String originalString = password;
+        String encodedString = encoder.encodeToString(originalString.getBytes());
+        return encodedString;
+    }
     public void AddNewAdmin(){
         if(usernameText.getText().trim().isEmpty() || emailText.getText().trim().isEmpty() || passwordText.getText().trim().isEmpty()){
             // Display message if some input is null
@@ -107,6 +115,8 @@ public class adminPanel extends javax.swing.JFrame {
             this.setEmail(emailText.getText().trim());
             this.setPassword(passwordText.getText().trim());
             this.setRole("admin");
+            String EncryptionPassword = this.EncryptionPassword(this.getPassword());
+            this.setPassword(EncryptionPassword);
             try {
                 BufferedWriter writer = new BufferedWriter(new FileWriter("users.txt",true));
                 writer.write(this.getUsername() + "/"  + this.getEmail() + "/" + this.getPassword() + "/" + this.getRole() + "\n");
@@ -171,10 +181,10 @@ public class adminPanel extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         usernameText = new javax.swing.JTextField();
         emailText = new javax.swing.JTextField();
-        passwordText = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        passwordText = new javax.swing.JPasswordField();
         jPanel1 = new javax.swing.JPanel();
         AddPackageBtn = new javax.swing.JButton();
         packageTypeText = new javax.swing.JTextField();
@@ -219,18 +229,18 @@ public class adminPanel extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap(74, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(usernameText, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(emailText, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(passwordText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE))
+                            .addComponent(usernameText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
+                            .addComponent(emailText, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)))
+                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(passwordText))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -539,7 +549,7 @@ public class adminPanel extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JButton logoutBtn;
     private javax.swing.JTextField packageTypeText;
-    private javax.swing.JTextField passwordText;
+    private javax.swing.JPasswordField passwordText;
     private javax.swing.JComboBox<String> photographerText;
     private javax.swing.JTextField priceText;
     private javax.swing.JTextField seat_numberText;

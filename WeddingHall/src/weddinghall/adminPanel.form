@@ -115,20 +115,20 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace pref="74" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jButton1" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jLabel2" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="usernameText" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="usernameText" alignment="1" pref="119" max="32767" attributes="0"/>
                                   <Component id="emailText" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="passwordText" alignment="1" pref="119" max="32767" attributes="0"/>
                               </Group>
                               <Component id="jLabel3" alignment="1" min="-2" pref="37" max="-2" attributes="0"/>
                               <Component id="jLabel4" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="passwordText" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -149,7 +149,7 @@
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="passwordText" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       <Component id="jButton1" min="-2" pref="49" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -169,8 +169,6 @@
             </Component>
             <Component class="javax.swing.JTextField" name="emailText">
             </Component>
-            <Component class="javax.swing.JTextField" name="passwordText">
-            </Component>
             <Component class="javax.swing.JLabel" name="jLabel2">
               <Properties>
                 <Property name="text" type="java.lang.String" value="&#x627;&#x633;&#x645; &#x627;&#x644;&#x645;&#x633;&#x62a;&#x62e;&#x62f;&#x645;"/>
@@ -185,6 +183,8 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="&#x643;&#x644;&#x645;&#x629; &#x627;&#x644;&#x645;&#x631;&#x648;&#x631;"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JPasswordField" name="passwordText">
             </Component>
           </SubComponents>
         </Container>
