@@ -17,18 +17,11 @@ import javax.swing.JOptionPane;
  */
 public class Login extends javax.swing.JFrame {
     private String username;
-    private String email;
     private String password;
     private String role;
     
     public String getRole(){
         return this.role;
-    }
-    public String getEmail(){
-        return this.email;
-    }
-    public void setEmail(String email){
-        this.email = email;
     }
     public void setRole(String role){
         this.role = role;
@@ -50,12 +43,11 @@ public class Login extends javax.swing.JFrame {
     }
     
     public void login(){
-        if(usernameOrEmailText.getText().trim().isEmpty() || passwordText.getText().trim().isEmpty()){
+        if(usernameText.getText().trim().isEmpty() || passwordText.getText().trim().isEmpty()){
             // Display message if some input is null
             JOptionPane.showMessageDialog(null, "can't Login with null values");
         }else{
-            this.setEmail(usernameOrEmailText.getText().trim());
-            this.setUsername(usernameOrEmailText.getText().trim());
+            this.setUsername(usernameText.getText().trim());
             this.setPassword(passwordText.getText().trim());
             try{
                 BufferedReader reader = new BufferedReader(new FileReader("users.txt"));
@@ -64,18 +56,18 @@ public class Login extends javax.swing.JFrame {
                     String user = tableLines[i].toString().trim();
                     String[] users = user.split("/");
                     String Username = users[0].trim();
-                    String Email = users[1].trim();
                     String Password = users[2].trim();
-                    String role = users[3].trim();
-                    if((this.getUsername().equals(Username) || this.getEmail().equals(Email)) && this.getPassword().equals(Password)){
+                    String Role = users[3].trim();
+                    
+                    if(this.getUsername().equals(Username) && this.getPassword().equals(Password)){
                         JOptionPane.showMessageDialog(null, "Login successfully");
-                        if("admin".equals(role)){
+                        if("admin".equals(Role)){
                             adminPanel obj = new adminPanel();
                             obj.setVisible(true);
                             this.setVisible(false);
                         }else{
                             home obj = new home();
-                            obj.welcomeLabel.setText("Welcome back " + this.getUsername());
+                            obj.UserName.setText(this.getUsername());
                             obj.setVisible(true);
                             this.setVisible(false);
                         }
@@ -88,7 +80,7 @@ public class Login extends javax.swing.JFrame {
                     }
                 }
             } catch (IOException ex) {
-                Logger.getLogger(register.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -104,7 +96,7 @@ public class Login extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        usernameOrEmailText = new javax.swing.JTextField();
+        usernameText = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         LoginBtn = new javax.swing.JButton();
         passwordText = new javax.swing.JPasswordField();
@@ -128,11 +120,11 @@ public class Login extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setText("Username or Email");
+        jLabel1.setText("Username");
 
-        usernameOrEmailText.addActionListener(new java.awt.event.ActionListener() {
+        usernameText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameOrEmailTextActionPerformed(evt);
+                usernameTextActionPerformed(evt);
             }
         });
 
@@ -164,7 +156,7 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(GoToRegisterBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(passwordText)
-                    .addComponent(usernameOrEmailText)
+                    .addComponent(usernameText)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jLabel3)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -181,7 +173,7 @@ public class Login extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addGap(5, 5, 5)
-                .addComponent(usernameOrEmailText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(usernameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addGap(5, 5, 5)
@@ -215,9 +207,9 @@ public class Login extends javax.swing.JFrame {
         login();
     }//GEN-LAST:event_LoginBtnActionPerformed
 
-    private void usernameOrEmailTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameOrEmailTextActionPerformed
+    private void usernameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_usernameOrEmailTextActionPerformed
+    }//GEN-LAST:event_usernameTextActionPerformed
 
     private void GoToRegisterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GoToRegisterBtnActionPerformed
         // redirect to register page
@@ -270,6 +262,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField passwordText;
-    private javax.swing.JTextField usernameOrEmailText;
+    private javax.swing.JTextField usernameText;
     // End of variables declaration//GEN-END:variables
 }
