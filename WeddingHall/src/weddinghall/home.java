@@ -10,10 +10,13 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -22,9 +25,27 @@ import javax.swing.table.DefaultTableModel;
 public class home extends javax.swing.JFrame {
     private String review_text;
     private int review_stars;
-
+    private Date PresentDate;
+    private Date ChosenDate;
+    
     public int getReview_stars() {
         return review_stars;
+    }
+
+    public Date getPresentDate() {
+        return PresentDate;
+    }
+
+    public void setPresentDate(Date PresentDate) {
+        this.PresentDate = PresentDate;
+    }
+
+    public Date getChoosenDate() {
+        return ChosenDate;
+    }
+
+    public void setChoosenDate(Date ChosenDate) {
+        this.ChosenDate = ChosenDate;
     }
     public void setReview_stars(int review_stars) {
         this.review_stars = review_stars;
@@ -36,11 +57,60 @@ public class home extends javax.swing.JFrame {
         this.review_text = review_text;
     }
     
-    /**
-     * Creates new form home
-     */
     public home() {
         initComponents();
+        writeToTable();
+    }
+    public void writeToTable(){
+        try {
+            SimpleDateFormat dateForm = new SimpleDateFormat("dd-MM-YYYY");
+            Date PresentDateTemporary = new Date();
+            this.setPresentDate(PresentDateTemporary);
+            String PresentDateFormatted = dateForm.format(this.getPresentDate());
+            
+            BufferedReader reader = new BufferedReader(new FileReader("Reservations.txt"));
+            DefaultTableModel model = (DefaultTableModel)reservedDate.getModel();
+            Object[] tableLines = reader.lines().toArray();
+            for(int i=0;i< tableLines.length; i++){
+                String line = tableLines[i].toString().trim();
+                String[] dataRow = line.split("/");
+                String[] date = new String[1];
+                date[0] = dataRow[1]; // date[0] is a date are reserved by users
+                System.out.println(date[0]);
+                if(this.ReservedValidDate(PresentDateFormatted, date[0])){
+                    model.addRow(date);
+                }
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(reviews.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(reviews.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }   
+    boolean ReservedValidDate(String PresentDateFormated, String ChosenDateFormated){
+        try{
+            String[] ChosenDateArray = ChosenDateFormated.split("-");
+            int ChosenDay = Integer.parseInt(ChosenDateArray[0]);
+            int ChosenMonth = Integer.parseInt(ChosenDateArray[1]);
+            int ChosenYear = Integer.parseInt(ChosenDateArray[2]);
+            String[] PresentDateArray = PresentDateFormated.split("-");
+            int PresentDay = Integer.parseInt(PresentDateArray[0]);
+            int PresentMonth = Integer.parseInt(PresentDateArray[1]);
+            int PresentYear = Integer.parseInt(PresentDateArray[2]);
+            if(ChosenYear < PresentYear){
+            }else{
+                 if(ChosenMonth < PresentMonth){
+                 }else{
+                     if(ChosenDay <= PresentDay){
+                     }else{
+                         return true;
+                     }
+                 }
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return false;
     }
     public void Review(){
         String review_stars_text = stars.getSelectedItem().toString();
@@ -73,7 +143,79 @@ public class home extends javax.swing.JFrame {
             Logger.getLogger(home.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    boolean isValidDate(String PresentDateFormated, String ChosenDateFormated){
+        try{
+            String[] ChosenDateArray = ChosenDateFormated.split("-");
+            int ChosenDay = Integer.parseInt(ChosenDateArray[0]);
+            int ChosenMonth = Integer.parseInt(ChosenDateArray[1]);
+            int ChosenYear = Integer.parseInt(ChosenDateArray[2]);
+            String[] PresentDateArray = PresentDateFormated.split("-");
+            int PresentDay = Integer.parseInt(PresentDateArray[0]);
+            int PresentMonth = Integer.parseInt(PresentDateArray[1]);
+            int PresentYear = Integer.parseInt(PresentDateArray[2]);
+            if(ChosenYear < PresentYear){
+                 throw new Exception("من فضلك اختر سنة لم تنتهي");
+            }else{
+                 if(ChosenMonth < PresentMonth){
+                     throw new Exception("من فضلك اختر شهر لم ينتهي");
+                 }else{
+                     if(ChosenDay <= PresentDay){
+                         throw new Exception("من فضلك اختر يوم لم ينتهي");
+                     }else{
+                         return true;
+                     }
+                 }
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return false;
+    }
+    public boolean isUnusedDate(String ChosenDateFormated){
+        DefaultTableModel model = (DefaultTableModel)reservedDate.getModel();
+        int rowCount = reservedDate.getRowCount();
+        System.out.println(rowCount);
+        boolean flag = true;
+        for(int i=0; i<rowCount; i++){
+            String reservedDate_Var = reservedDate.getValueAt(i, 0).toString();
+            if(ChosenDateFormated.equals(reservedDate_Var)){
+                flag = false;
+                break;
+            }else{
+                flag = true;
+            }
+        }
+        return flag;
+    }
+    public void Reservation(){
+        try{
+            SimpleDateFormat dateForm = new SimpleDateFormat("dd-MM-YYYY");
+            String ChosenDateFormatted = dateForm.format(Date_for_reservation.getDate());
+            String PresentDateFormatted = dateForm.format(this.getPresentDate());
+            
+            this.setChoosenDate(Date_for_reservation.getDate());
+            Date todayDate = new Date();
+            this.setPresentDate(todayDate);
+            // Check if valid date
+            boolean isValidDate = this.isValidDate(PresentDateFormatted, ChosenDateFormatted);
+            boolean isUnusedDate = this.isUnusedDate(ChosenDateFormatted);
+            if(isValidDate == true){
+                if(isUnusedDate == true){
+                    confirmReservation obj = new confirmReservation();
+                    obj.ReservationDateText.setText(dateForm.format(Date_for_reservation.getDate()));
+                    obj.userNameText.setText(this.UserName.getText());
+                    obj.setVisible(true);
+                    this.setVisible(false);
+                }else{
+                    throw new Exception("عذرا\nهذا التاريخ محجوز من قبل");
+                }
+            }
 
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -85,9 +227,9 @@ public class home extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        welcomeLabel = new javax.swing.JLabel();
+        UserName = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        reservedDate = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -97,26 +239,39 @@ public class home extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         ReviewBtnPage = new javax.swing.JButton();
         submitReview = new javax.swing.JButton();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        Date_for_reservation = new com.toedter.calendar.JDateChooser();
         jLabel5 = new javax.swing.JLabel();
+        reservevationBtn = new javax.swing.JButton();
+        logoutBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Wedding Hall Reservation");
 
-        welcomeLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        welcomeLabel.setText("ترحيب");
+        UserName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        UserName.setText("الاسم");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        reservedDate.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "تاريخ الحجوزات"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(reservedDate);
+        if (reservedDate.getColumnModel().getColumnCount() > 0) {
+            reservedDate.getColumnModel().getColumn(0).setResizable(false);
+        }
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("التواريخ التي لا يمكن الحجز فيها - (محجوزة)");
@@ -179,10 +334,24 @@ public class home extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(submitReview, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel5.setText("اختر تاريخ للحجز");
+
+        reservevationBtn.setText("حجز");
+        reservevationBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reservevationBtnActionPerformed(evt);
+            }
+        });
+
+        logoutBtn.setText("تسجيل خروج");
+        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -194,13 +363,18 @@ public class home extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(welcomeLabel)
+                            .addComponent(reservevationBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel5))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                                .addComponent(UserName, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                                .addComponent(logoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(Date_for_reservation, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel5)))
+                .addGap(12, 12, 12)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -210,16 +384,20 @@ public class home extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(welcomeLabel)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(UserName)
+                            .addComponent(logoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Date_for_reservation, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(12, 12, 12)
                         .addComponent(jLabel2)
-                        .addGap(26, 26, 26)
+                        .addGap(12, 12, 12)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(reservevationBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(11, 11, 11))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
@@ -261,6 +439,16 @@ public class home extends javax.swing.JFrame {
         Review();
     }//GEN-LAST:event_submitReviewActionPerformed
 
+    private void reservevationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservevationBtnActionPerformed
+        Reservation();
+    }//GEN-LAST:event_reservevationBtnActionPerformed
+
+    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
+        home obj = new home();
+        obj.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_logoutBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -297,8 +485,9 @@ public class home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.toedter.calendar.JDateChooser Date_for_reservation;
     private javax.swing.JButton ReviewBtnPage;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    public javax.swing.JLabel UserName;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -308,10 +497,11 @@ public class home extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JButton logoutBtn;
+    private javax.swing.JTable reservedDate;
+    private javax.swing.JButton reservevationBtn;
     private javax.swing.JTextArea reviewTextArea;
     private javax.swing.JComboBox<String> stars;
     private javax.swing.JButton submitReview;
-    public javax.swing.JLabel welcomeLabel;
     // End of variables declaration//GEN-END:variables
 }
