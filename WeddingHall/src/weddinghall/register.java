@@ -52,7 +52,7 @@ public class register extends javax.swing.JFrame {
         String encodedString = encoder.encodeToString(originalString.getBytes());
         return encodedString;
     }
-    public void Register(){
+    public void RegisterNewAccount(){
         if(usernameText.getText().trim().isEmpty() || emailText.getText().trim().isEmpty() || passwordText.getText().trim().isEmpty()){
             // Display message if some input is null
             JOptionPane.showMessageDialog(null, "can't register with null values");
@@ -79,7 +79,11 @@ public class register extends javax.swing.JFrame {
             this.setVisible(false);
         }
     }
-
+    public void Back(){
+        Login obj = new Login();
+        obj.setVisible(true);
+        this.setVisible(false);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -96,7 +100,7 @@ public class register extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         SignUpBtn = new javax.swing.JButton();
         passwordText = new javax.swing.JPasswordField();
-        jLabel3 = new javax.swing.JLabel();
+        WelcomeMessage = new javax.swing.JLabel();
         GoToLoginBtn = new javax.swing.JButton();
         emailText = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -129,8 +133,8 @@ public class register extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel3.setText("Welcome To Wedding Hall!");
+        WelcomeMessage.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        WelcomeMessage.setText("Welcome To Wedding Hall!");
 
         GoToLoginBtn.setText("Alreade have an account? Sign in");
         GoToLoginBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -148,7 +152,7 @@ public class register extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(31, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
+                    .addComponent(WelcomeMessage)
                     .addComponent(GoToLoginBtn)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(emailText, javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,7 +168,7 @@ public class register extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(jLabel3)
+                .addComponent(WelcomeMessage)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addGap(5, 5, 5)
@@ -203,14 +207,12 @@ public class register extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void SignUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignUpBtnActionPerformed
-        Register();
+        RegisterNewAccount();
     }//GEN-LAST:event_SignUpBtnActionPerformed
 
     private void GoToLoginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GoToLoginBtnActionPerformed
         // redirect to login page
-        Login obj = new Login();
-        obj.setVisible(true);
-        this.setVisible(false);
+        Back();
     }//GEN-LAST:event_GoToLoginBtnActionPerformed
 
     /**
@@ -251,10 +253,10 @@ public class register extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton GoToLoginBtn;
     private javax.swing.JButton SignUpBtn;
+    private javax.swing.JLabel WelcomeMessage;
     private javax.swing.JTextField emailText;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

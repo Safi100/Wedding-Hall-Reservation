@@ -166,6 +166,19 @@ public class adminPanel extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
         }
     }
+    public void logout(){
+        this.dispose();
+        Login obj = new Login();
+        obj.setVisible(true);
+    }
+    public void goToReview(){
+        reviews obj = new reviews();
+        obj.setVisible(true);
+    }
+    public void goToReservationList(){
+        ReservationList obj = new ReservationList();
+        obj.setVisible(true);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -175,10 +188,10 @@ public class adminPanel extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        headTitle = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        NewAdminBtn = new javax.swing.JButton();
         usernameText = new javax.swing.JTextField();
         emailText = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -190,32 +203,32 @@ public class adminPanel extends javax.swing.JFrame {
         packageTypeText = new javax.swing.JTextField();
         seat_numberText = new javax.swing.JTextField();
         priceText = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        P_type = new javax.swing.JLabel();
+        Seat_no = new javax.swing.JLabel();
+        Dinner = new javax.swing.JLabel();
+        Sing = new javax.swing.JLabel();
+        photo = new javax.swing.JLabel();
         dinnerText = new javax.swing.JComboBox<>();
-        jLabel11 = new javax.swing.JLabel();
+        pricee = new javax.swing.JLabel();
         singing_groupText = new javax.swing.JComboBox<>();
         photographerText = new javax.swing.JComboBox<>();
         sweetsText = new javax.swing.JComboBox<>();
-        jLabel10 = new javax.swing.JLabel();
+        sweet = new javax.swing.JLabel();
         logoutBtn = new javax.swing.JButton();
         ReviewsBtn = new javax.swing.JButton();
         ReservationListBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setText("صفحة المسؤول");
+        headTitle.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        headTitle.setText("صفحة المسؤول");
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "إضافة مسؤول جديد", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
-        jButton1.setText("تسجيل");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        NewAdminBtn.setText("تسجيل");
+        NewAdminBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                NewAdminBtnActionPerformed(evt);
             }
         });
 
@@ -232,7 +245,7 @@ public class adminPanel extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap(74, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(NewAdminBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -259,7 +272,7 @@ public class adminPanel extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(passwordText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(NewAdminBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -272,19 +285,19 @@ public class adminPanel extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setText("نوع البكج");
+        P_type.setText("نوع البكج");
 
-        jLabel6.setText("عدد الكراسي");
+        Seat_no.setText("عدد الكراسي");
 
-        jLabel7.setText("عشاء");
+        Dinner.setText("عشاء");
 
-        jLabel8.setText("فرقة غناء");
+        Sing.setText("فرقة غناء");
 
-        jLabel9.setText("مصور");
+        photo.setText("مصور");
 
         dinnerText.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "نعم", "لا" }));
 
-        jLabel11.setText("السعر");
+        pricee.setText("السعر");
 
         singing_groupText.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "نعم", "لا" }));
 
@@ -292,7 +305,7 @@ public class adminPanel extends javax.swing.JFrame {
 
         sweetsText.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "نعم", "لا" }));
 
-        jLabel10.setText("حلويات");
+        sweet.setText("حلويات");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -302,14 +315,14 @@ public class adminPanel extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(86, 86, 86)
-                        .addComponent(jLabel8)
+                        .addComponent(Sing)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel7))
+                        .addComponent(Dinner))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(66, 66, 66)
-                        .addComponent(jLabel6)
+                        .addComponent(Seat_no)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel5))
+                        .addComponent(P_type))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -329,7 +342,7 @@ public class adminPanel extends javax.swing.JFrame {
                                     .addComponent(photographerText, 0, 98, Short.MAX_VALUE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel11))))
+                                .addComponent(pricee))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addComponent(seat_numberText, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -339,9 +352,9 @@ public class adminPanel extends javax.swing.JFrame {
                             .addComponent(packageTypeText)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(95, 95, 95)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(sweet, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel9)))
+                        .addComponent(photo)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -349,24 +362,24 @@ public class adminPanel extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
+                    .addComponent(P_type)
+                    .addComponent(Seat_no))
                 .addGap(6, 6, 6)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(packageTypeText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(seat_numberText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(13, 13, 13)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8))
+                    .addComponent(Dinner)
+                    .addComponent(Sing))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(dinnerText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(singing_groupText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel10))
+                    .addComponent(photo)
+                    .addComponent(sweet))
                 .addGap(6, 6, 6)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -375,7 +388,7 @@ public class adminPanel extends javax.swing.JFrame {
                             .addComponent(photographerText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(sweetsText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel11)
+                        .addComponent(pricee)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(priceText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -450,7 +463,7 @@ public class adminPanel extends javax.swing.JFrame {
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
+                        .addComponent(headTitle)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -458,7 +471,7 @@ public class adminPanel extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(jLabel1)
+                .addComponent(headTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -467,28 +480,24 @@ public class adminPanel extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void NewAdminBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewAdminBtnActionPerformed
         AddNewAdmin();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_NewAdminBtnActionPerformed
 
     private void AddPackageBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddPackageBtnActionPerformed
         addNewPackage();
     }//GEN-LAST:event_AddPackageBtnActionPerformed
 
     private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
-        Login obj = new Login();
-        obj.setVisible(true);
-        this.setVisible(false);
+        logout();
     }//GEN-LAST:event_logoutBtnActionPerformed
 
     private void ReviewsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReviewsBtnActionPerformed
-        reviews obj = new reviews();
-        obj.setVisible(true);
+        goToReview();
     }//GEN-LAST:event_ReviewsBtnActionPerformed
 
     private void ReservationListBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReservationListBtnActionPerformed
-        ReservationList obj = new ReservationList();
-        obj.setVisible(true);
+        goToReservationList();
     }//GEN-LAST:event_ReservationListBtnActionPerformed
 
     /**
@@ -528,32 +537,32 @@ public class adminPanel extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddPackageBtn;
+    private javax.swing.JLabel Dinner;
+    private javax.swing.JButton NewAdminBtn;
+    private javax.swing.JLabel P_type;
     private javax.swing.JButton ReservationListBtn;
     private javax.swing.JButton ReviewsBtn;
+    private javax.swing.JLabel Seat_no;
+    private javax.swing.JLabel Sing;
     private javax.swing.JComboBox<String> dinnerText;
     private javax.swing.JTextField emailText;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel headTitle;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JButton logoutBtn;
     private javax.swing.JTextField packageTypeText;
     private javax.swing.JPasswordField passwordText;
+    private javax.swing.JLabel photo;
     private javax.swing.JComboBox<String> photographerText;
     private javax.swing.JTextField priceText;
+    private javax.swing.JLabel pricee;
     private javax.swing.JTextField seat_numberText;
     private javax.swing.JComboBox<String> singing_groupText;
+    private javax.swing.JLabel sweet;
     private javax.swing.JComboBox<String> sweetsText;
     private javax.swing.JTextField usernameText;
     // End of variables declaration//GEN-END:variables

@@ -25,7 +25,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <Component id="HeadLabel" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
@@ -47,7 +47,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <Component id="HeadLabel" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -69,8 +69,8 @@
                       <Group type="102" attributes="0">
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel2" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel3" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="note" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="note_two" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="confirmReservationBtn" min="-2" pref="114" max="-2" attributes="0"/>
@@ -88,9 +88,9 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="confirmReservationBtn" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
-                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                          <Component id="note" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                          <Component id="note_two" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -176,19 +176,19 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="confirmReservationBtnActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel2">
+        <Component class="javax.swing.JLabel" name="note">
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x645;&#x644;&#x627;&#x62d;&#x638;&#x629; : &#x647;&#x630;&#x647; &#x627;&#x644;&#x628;&#x643;&#x62c;&#x627;&#x62a; &#x645;&#x648;&#x641;&#x631;&#x629; &#x645;&#x646; &#x627;&#x644;&#x642;&#x627;&#x639;&#x629;&#x60c; &#x628;&#x625;&#x645;&#x643;&#x627;&#x646;&#x643; &#x627;&#x62d;&#x636;&#x627;&#x631; &#x645;&#x635;&#x648;&#x631;&#x643; &#x627;&#x644;&#x62e;&#x627;&#x635; &#x648;&#x627;&#x644;&#x641;&#x631;&#x642;&#x629; &#x628;&#x646;&#x641;&#x633;&#x643;"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel3">
+        <Component class="javax.swing.JLabel" name="note_two">
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x627;&#x630;&#x627; &#x643;&#x646;&#x62a; &#x62a;&#x631;&#x64a;&#x62f; &#x628;&#x643;&#x62c; &#x645;&#x62e;&#x635;&#x635; &#x62a;&#x648;&#x627;&#x635;&#x644; &#x645;&#x639; &#x635;&#x641;&#x62d;&#x62a;&#x646;&#x627; &#x639;&#x644;&#x649; &#x627;&#x644;&#x641;&#x64a;&#x633;&#x628;&#x648;&#x643; &#x644;&#x644;&#x627;&#x62a;&#x641;&#x627;&#x642; &#x639;&#x644;&#x649; &#x627;&#x644;&#x633;&#x639;&#x631;"/>
           </Properties>
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="HeadLabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="24" style="1"/>
@@ -203,19 +203,19 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="cancel" min="-2" pref="135" max="-2" attributes="0"/>
+                  <Component id="cancelBtn" min="-2" pref="135" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="ReservationDateText" min="-2" pref="160" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                          <Component id="date" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="281" max="-2" attributes="0"/>
                           <Component id="userNameText" min="-2" pref="142" max="-2" attributes="0"/>
                           <EmptySpace pref="27" max="32767" attributes="0"/>
-                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                          <Component id="name" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -230,7 +230,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                                  <Component id="name" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="3" max="32767" attributes="0"/>
                               </Group>
                               <Component id="userNameText" max="32767" attributes="0"/>
@@ -241,12 +241,12 @@
                                   <Component id="ReservationDateText" min="-2" pref="26" max="-2" attributes="0"/>
                                   <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                              <Component id="date" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="cancel" min="-2" pref="68" max="-2" attributes="0"/>
+                          <Component id="cancelBtn" min="-2" pref="68" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -256,7 +256,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel4">
+        <Component class="javax.swing.JLabel" name="date">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="1"/>
@@ -274,7 +274,7 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel5">
+        <Component class="javax.swing.JLabel" name="name">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="1"/>
@@ -292,12 +292,12 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JButton" name="cancel">
+        <Component class="javax.swing.JButton" name="cancelBtn">
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x627;&#x644;&#x63a;&#x627;&#x621;"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelBtnActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

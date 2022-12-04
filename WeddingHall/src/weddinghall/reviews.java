@@ -23,6 +23,9 @@ public class reviews extends javax.swing.JFrame {
      */
     public reviews() {
         initComponents();
+        WriteToTable();
+    }
+    public void WriteToTable(){
         try {
             BufferedReader reader = new BufferedReader(new FileReader("review.txt"));
             DefaultTableModel model = (DefaultTableModel)reviewsTable.getModel();
@@ -38,7 +41,9 @@ public class reviews extends javax.swing.JFrame {
             Logger.getLogger(reviews.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    public void close(){
+        this.dispose();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -48,7 +53,7 @@ public class reviews extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        HeadLabel = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         reviewsTable = new javax.swing.JTable();
@@ -56,8 +61,8 @@ public class reviews extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setText("تقييم الزبائن");
+        HeadLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        HeadLabel.setText("تقييم الزبائن");
 
         reviewsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -119,7 +124,7 @@ public class reviews extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 169, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
+                        .addComponent(HeadLabel)
                         .addGap(0, 169, Short.MAX_VALUE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -128,7 +133,7 @@ public class reviews extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(jLabel1)
+                .addComponent(HeadLabel)
                 .addGap(25, 25, 25)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -139,7 +144,7 @@ public class reviews extends javax.swing.JFrame {
 
     private void closeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBtnActionPerformed
         // close this page
-        this.setVisible(false);
+        close();
     }//GEN-LAST:event_closeBtnActionPerformed
 
     /**
@@ -178,8 +183,8 @@ public class reviews extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel HeadLabel;
     private javax.swing.JButton closeBtn;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable reviewsTable;

@@ -163,7 +163,12 @@ public class confirmReservation extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-
+    public void cancel(){
+        home obj = new home();
+        obj.UserName.setText(this.userNameText.getText());
+        obj.setVisible(true);
+        this.setVisible(false);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -177,15 +182,15 @@ public class confirmReservation extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         packagesTable = new javax.swing.JTable();
         confirmReservationBtn = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        note = new javax.swing.JLabel();
+        note_two = new javax.swing.JLabel();
+        HeadLabel = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
+        date = new javax.swing.JLabel();
         ReservationDateText = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        name = new javax.swing.JLabel();
         userNameText = new javax.swing.JLabel();
-        cancel = new javax.swing.JButton();
+        cancelBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -214,9 +219,9 @@ public class confirmReservation extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("ملاحظة : هذه البكجات موفرة من القاعة، بإمكانك احضار مصورك الخاص والفرقة بنفسك");
+        note.setText("ملاحظة : هذه البكجات موفرة من القاعة، بإمكانك احضار مصورك الخاص والفرقة بنفسك");
 
-        jLabel3.setText("اذا كنت تريد بكج مخصص تواصل مع صفحتنا على الفيسبوك للاتفاق على السعر");
+        note_two.setText("اذا كنت تريد بكج مخصص تواصل مع صفحتنا على الفيسبوك للاتفاق على السعر");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -228,8 +233,8 @@ public class confirmReservation extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(note, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(note_two, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(18, 18, 18)
                         .addComponent(confirmReservationBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1))
@@ -242,32 +247,32 @@ public class confirmReservation extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(confirmReservationBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addComponent(note)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3)
+                        .addComponent(note_two)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setText("Reservation");
+        HeadLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        HeadLabel.setText("Reservation");
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel4.setText("التاريخ الذي تود الحجز فيه :");
+        date.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        date.setText("التاريخ الذي تود الحجز فيه :");
 
         ReservationDateText.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel5.setText("الاسم :");
+        name.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        name.setText("الاسم :");
 
         userNameText.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
-        cancel.setText("الغاء");
-        cancel.addActionListener(new java.awt.event.ActionListener() {
+        cancelBtn.setText("الغاء");
+        cancelBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelActionPerformed(evt);
+                cancelBtnActionPerformed(evt);
             }
         });
 
@@ -277,18 +282,18 @@ public class confirmReservation extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(ReservationDateText, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel4))
+                        .addComponent(date))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(281, 281, 281)
                         .addComponent(userNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                        .addComponent(jLabel5)
+                        .addComponent(name)
                         .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
@@ -299,7 +304,7 @@ public class confirmReservation extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
+                                .addComponent(name)
                                 .addGap(0, 3, Short.MAX_VALUE))
                             .addComponent(userNameText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
@@ -307,10 +312,10 @@ public class confirmReservation extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(ReservationDateText, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(1, 1, 1))
-                            .addComponent(jLabel4)))
+                            .addComponent(date)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(1, 1, 1)))
                 .addContainerGap())
         );
@@ -321,7 +326,7 @@ public class confirmReservation extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(HeadLabel)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -337,7 +342,7 @@ public class confirmReservation extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(HeadLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -352,12 +357,9 @@ public class confirmReservation extends javax.swing.JFrame {
         ConfirmReservation();
     }//GEN-LAST:event_confirmReservationBtnActionPerformed
 
-    private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
-        home obj = new home();
-        obj.UserName.setText(this.userNameText.getText());
-        obj.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_cancelActionPerformed
+    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
+        cancel();
+    }//GEN-LAST:event_cancelBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -395,17 +397,17 @@ public class confirmReservation extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel HeadLabel;
     public javax.swing.JLabel ReservationDateText;
-    private javax.swing.JButton cancel;
+    private javax.swing.JButton cancelBtn;
     private javax.swing.JButton confirmReservationBtn;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel date;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel name;
+    private javax.swing.JLabel note;
+    private javax.swing.JLabel note_two;
     private javax.swing.JTable packagesTable;
     public javax.swing.JLabel userNameText;
     // End of variables declaration//GEN-END:variables

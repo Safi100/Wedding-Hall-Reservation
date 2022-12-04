@@ -41,7 +41,9 @@ public class ReservationList extends javax.swing.JFrame {
             Logger.getLogger(reviews.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    public void close(){
+        this.dispose();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -55,7 +57,7 @@ public class ReservationList extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         ReservationHistoryTable = new javax.swing.JTable();
         closeBtn = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        HeadLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -110,8 +112,8 @@ public class ReservationList extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setText("سجل الحجوزات");
+        HeadLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        HeadLabel.setText("سجل الحجوزات");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -123,7 +125,7 @@ public class ReservationList extends javax.swing.JFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
+                        .addComponent(HeadLabel)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -131,7 +133,7 @@ public class ReservationList extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jLabel1)
+                .addComponent(HeadLabel)
                 .addGap(35, 35, 35)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -141,9 +143,7 @@ public class ReservationList extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void closeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBtnActionPerformed
-        adminPanel obj = new adminPanel();
-        obj.setVisible(true);
-        this.setVisible(false);
+        close();
     }//GEN-LAST:event_closeBtnActionPerformed
 
     /**
@@ -182,9 +182,9 @@ public class ReservationList extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel HeadLabel;
     private javax.swing.JTable ReservationHistoryTable;
     private javax.swing.JButton closeBtn;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

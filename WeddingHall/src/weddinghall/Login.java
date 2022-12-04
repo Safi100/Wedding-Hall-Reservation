@@ -91,6 +91,11 @@ public class Login extends javax.swing.JFrame {
             }
         }
     }
+    public void newUser(){
+        register obj = new register();
+        obj.setVisible(true);
+        this.setVisible(false);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -107,7 +112,7 @@ public class Login extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         LoginBtn = new javax.swing.JButton();
         passwordText = new javax.swing.JPasswordField();
-        jLabel3 = new javax.swing.JLabel();
+        welcomeMessage = new javax.swing.JLabel();
         GoToRegisterBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -144,8 +149,8 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel3.setText("Welcome back!");
+        welcomeMessage.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        welcomeMessage.setText("Welcome back!");
 
         GoToRegisterBtn.setText("Don't have account? Sign up");
         GoToRegisterBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -165,7 +170,7 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(passwordText)
                     .addComponent(usernameText)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel3)
+                        .addComponent(welcomeMessage)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(LoginBtn, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
@@ -176,7 +181,7 @@ public class Login extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(jLabel3)
+                .addComponent(welcomeMessage)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addGap(5, 5, 5)
@@ -220,9 +225,7 @@ public class Login extends javax.swing.JFrame {
 
     private void GoToRegisterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GoToRegisterBtnActionPerformed
         // redirect to register page
-        register obj = new register();
-        obj.setVisible(true);
-        this.setVisible(false);
+        newUser();
     }//GEN-LAST:event_GoToRegisterBtnActionPerformed
 
     /**
@@ -265,10 +268,10 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton LoginBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField passwordText;
     private javax.swing.JTextField usernameText;
+    private javax.swing.JLabel welcomeMessage;
     // End of variables declaration//GEN-END:variables
 }
