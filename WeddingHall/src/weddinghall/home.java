@@ -112,26 +112,29 @@ public class home extends javax.swing.JFrame {
         return false;
     }
     public void Review(){
-        String review_stars_text = stars.getSelectedItem().toString();
-        String review_text_area = reviewTextArea.getText().trim();
-        this.setReviewText(review_text_area);
-        switch(review_stars_text){
-            case "5 نجوم" :
-                this.setReview_stars(5);
-            break;
-            case "4 نجوم" :
-                this.setReview_stars(4);
-            break;
-            case "3 نجوم" :
-                this.setReview_stars(3);
-            break;
-            case "نجمتان" :
-                this.setReview_stars(2);
-            break;
-            case "نجمة" :
-                this.setReview_stars(1);
-            break;
-        }
+        if(reviewTextArea.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(null,"الرجاء ادخال ملاحظاتك");
+        }else{
+            String review_stars_text = stars.getSelectedItem().toString();
+            String review_text_area = reviewTextArea.getText().trim();
+            this.setReviewText(review_text_area);
+            switch(review_stars_text){
+                case "5 نجوم" :
+                    this.setReview_stars(5);
+                break;
+                case "4 نجوم" :
+                    this.setReview_stars(4);
+                break;
+                case "3 نجوم" :
+                    this.setReview_stars(3);
+                break;
+                case "نجمتان" :
+                    this.setReview_stars(2);
+                break;
+                case "نجمة" :
+                    this.setReview_stars(1);
+                break;
+            }
         // write to reviews file
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("review.txt",true));
@@ -141,6 +144,8 @@ public class home extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(home.class.getName()).log(Level.SEVERE, null, ex);
         }
+        }
+
     }
     boolean isValidDate(String PresentDateFormated, String ChosenDateFormated){
         try{
