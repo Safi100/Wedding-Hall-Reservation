@@ -493,6 +493,7 @@ public class adminPanel extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void NewAdminBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewAdminBtnActionPerformed

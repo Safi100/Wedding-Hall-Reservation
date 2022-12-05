@@ -465,6 +465,7 @@ public class home extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void ReviewBtnPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReviewBtnPageActionPerformed

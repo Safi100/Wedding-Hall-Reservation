@@ -59,8 +59,8 @@ public class Login extends javax.swing.JFrame {
                 BufferedReader reader = new BufferedReader(new FileReader("users.txt"));
                 Object[] tableLines = reader.lines().toArray();
                 for(int i=0;i< tableLines.length; i++){
-                    String user = tableLines[i].toString().trim();
-                    String[] users = user.split("/");
+                    String user = tableLines[i].toString().trim(); // razi/razi@gmail.com/razi123/admin
+                    String[] users = user.split("/"); // users = [razi,razi@gmail.com,razi123,admin]
                     String Username = users[0].trim();
                     String Password = users[2].trim();
                     String Role = users[3].trim();
@@ -213,6 +213,7 @@ public class Login extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void LoginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginBtnActionPerformed

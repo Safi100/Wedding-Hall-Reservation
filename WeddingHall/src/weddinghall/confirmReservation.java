@@ -153,7 +153,8 @@ public class confirmReservation extends javax.swing.JFrame {
                 writer.close();
                 home obj = new home();
                 this.setVisible(false);
-                this.setVisible(true);
+                obj.UserName.setText(this.userNameText.getText());
+                obj.setVisible(true);
             } catch (IOException ex) {
                 Logger.getLogger(confirmReservation.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -351,6 +352,7 @@ public class confirmReservation extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void confirmReservationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmReservationBtnActionPerformed
