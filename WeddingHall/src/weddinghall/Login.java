@@ -71,18 +71,18 @@ public class Login extends javax.swing.JFrame {
                         if("admin".equals(Role)){
                             adminPanel obj = new adminPanel();
                             obj.setVisible(true);
-                            this.setVisible(false);
+                            this.dispose();
                         }else{
                             home obj = new home();
                             obj.UserName.setText(this.getUsername());
                             obj.setVisible(true);
-                            this.setVisible(false);
+                            this.dispose();
                         }
                         reader.close();
                         break;
                     }else{
                         if(i == tableLines.length - 1){
-                            JOptionPane.showMessageDialog(null, "Wrong username/password");
+                            JOptionPane.showMessageDialog(null, "خطأ في اسم المستخدم/كلمة السر");
                         }
                     }
                 }
